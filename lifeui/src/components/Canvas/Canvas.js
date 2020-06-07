@@ -1,25 +1,27 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 
-class Canvas extends Component {
+function Canvas() {
 
-    componentDidMount() {
-        const canvas = this.refs.canvas;
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
         // ctx.fillText(this.props.text, 210, 75);
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(300, 150);
         ctx.stroke();
-    }
+    });
 
-    render() {
-        return (
-            <div>
-                <canvas ref="canvas" width={640} height={425} />
-            </div>
-        );
-    }
+
+    return (
+        <div>
+            <canvas ref={canvasRef} width={640} height={425} />
+        </div>
+    );
+
 }
 
 export default Canvas;
